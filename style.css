@@ -1,0 +1,38 @@
+.tCalcRow{
+  display: flex;
+}
+
+.tCalcCell{
+  display: inline;
+  width: 25%;
+  text-align: center;
+  padding: 10px;
+  border: 2px solid #dddddd;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.tCalcOperator{
+  background-color: #e8e8e8;
+  font-weight: 100 !important;
+  /* font-size: 14px; */
+}
+
+.tCalcResult{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 100%;
+  padding-right: 20px;
+  font-size: 2rem;
+  font-weight: bolder;
+  height: 150px;
+  text-align: right;
+}
+
+.tCalc{
+  border: 1px solid #dddddd;
+  
+}
