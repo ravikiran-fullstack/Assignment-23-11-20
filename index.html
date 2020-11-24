@@ -17,8 +17,6 @@
         <div class="tCalc">
           <div class="tCalcResult">
               <p id="operationResult"></p>
-              <p id="operation"></p>
-              <p id="operand2"></p>
               <p id="result" contenteditable="true">0</p>
           </div>
           <div class="tCalcOperators">
@@ -55,9 +53,9 @@
               <div class="tCalcCell tCalcOperator" id="add" onclick="updateOperation('+')">+</div>
             </div>
             <div class="tCalcRow">
-              <div class="tCalcCell ">+/-</div>
-              <div class="tCalcCell " onclick="updateOpe(0)">0</div>
-              <div class="tCalcCell ">.</div>
+              <div class="tCalcCell">+/-</div>
+              <div class="tCalcCell" onclick="updateOpe(0)">0</div>
+              <div class="tCalcCell">.</div>
               <div class="tCalcCell tCalcOperator" onclick="showResult()">=</div>
             </div>
           </div>

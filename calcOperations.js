@@ -1,23 +1,18 @@
 let currentResult = 0;
-let operand = 0;
-let hasUpdated = false;
 let operatorClicked = false;
 let operand1 = null;
 let operand2 = null;
 let operandStack = [];
 let operationSelected = "";
-
 let operationStarted = false;
 
 function updateOpe(value) {
   if (!operationStarted) {
-    //document.getElementById("operandStack").innerHTML = +value;
     operand1 = +value;
     operandStack.push(value);
   } else {
     operand2 = +value;
     operandStack.push(value);
-    // document.getElementById('operand1').innerHTML = `${operand1} ${operationSelected} ${operand2}`;
   }
   showCalculatorOutput();
 }
@@ -30,7 +25,6 @@ function updateOperation(operation) {
   operationStarted = true;
   operationSelected = operation;
   operandStack.push(operation);
-  //document.getElementById("operandStack").innerHTML = `${operand1} ${operation}`;
 
   if (operand1 != null && operand2 != null && operationStarted) {
     let result = calculate(operand1, operand2, operationSelected);
@@ -57,13 +51,11 @@ function showResult() {
 }
 
 function updateOperand(value) {
-  hasUpdated = true;
   console.log("updateOperand ", value, value != 0);
-  operand = +value;
+  let operand = +value;
   let currentValue = document.getElementById("result").innerHTML;
   if ((value != 0 || currentValue != 0) && !operatorClicked) {
     document.getElementById("result").innerHTML = currentValue + operand;
-    // currentResult = +(currentValue + operand);
   } else {
     document.getElementById("result").innerHTML = operand;
     operatorClicked = false;
