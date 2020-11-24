@@ -1,53 +1,74 @@
 let currentResult = 0;
 let operatorClicked = false;
-let operand1 = null;
-let operand2 = null;
+let operand1 = '';
 let operandStack = [];
 let operationSelected = "";
 let operationStarted = false;
 
 function updateOpe(value) {
-  if (!operationStarted) {
-    operand1 = +value;
-    operandStack.push(value);
-  } else {
-    operand2 = +value;
-    operandStack.push(value);
-  }
-  showCalculatorOutput();
+    if(!operationStarted){
+      currentResult = 0;
+      document.getElementById("operationResult").innerHTML = '';
+    }
+    operand1 = operand1 + value;
+    document.getElementById("result").innerHTML = operand1;
 }
 
 function updateOperation(operation) {
-  if(operand1 === null ){
-    operand1 = 0;
-    operandStack.push(operand1);
+  if(!operationStarted && (operation === '+' || operation === '-' || operation === '/' )){
+    currentResult = 0;
+  } else if(!operationStarted){
+    currentResult = 1;
   }
+
+  if(!operationStarted && operand1 === ''){
+    operand1 = 0;
+  }
+
+  operandStack.push(operand1);
   operationStarted = true;
   operationSelected = operation;
   operandStack.push(operation);
 
-  if (operand1 != null && operand2 != null && operationStarted) {
-    let result = calculate(operand1, operand2, operationSelected);
-    document.getElementById("result").innerHTML = "Result:" + result;
-    operand1 = result;
-    currentResult = result;
-  }
+  currentResult = calculate(+operand1, currentResult, operationSelected);
+  document.getElementById("result").innerHTML = currentResult;
+  operand1 = '';
   showCalculatorOutput();
 }
 
 function showCalculatorOutput() {
-  console.log(operandStack.join(" ")); 
-  document.getElementById("operationResult").innerHTML = operandStack.join(" ");
+  console.log(operandStack.join(' ')); 
+  document.getElementById("operationResult").innerHTML = operandStack.join(' ');
+}
+// Called on press of '='
+function showResult() {
+  operandStack.push(operand1);  
+  operandStack.push('=');
+  showCalculatorOutput();
+  currentResult = calculate(currentResult, +operand1, operationSelected);
+  document.getElementById("result").innerHTML = currentResult;
+  clearOps();
 }
 
-function showResult() {
-  currentResult = calculate(operand1, operand2, operationSelected);
-  document.getElementById("result").innerHTML = currentResult;
-  operationSelected = "";
-  operand1 = null;
-  operand2 = null;
+function clearResult() {
+  document.getElementById("result").innerHTML = 0;
+  document.getElementById("operationResult").innerHTML = 0;
+  currentResult = 0;
+  clearOps();
+}
+
+function clearOps(){
+  operationSelected = '';
+  operand1 = '';
   operandStack = [];
   operationStarted = false; 
+}
+
+
+function clearEntry() {
+  console.log("clearEntry");
+  document.getElementById("result").innerHTML = 0;
+  operand1 = ''
 }
 
 function updateOperand(value) {
@@ -84,18 +105,4 @@ function calculate(_operand1, _operand2, _operator) {
   return output;
 }
 
-function clearResult() {
-  console.log("clear");
-  document.getElementById("result").innerHTML = 0;
-  document.getElementById("operationResult").innerHTML = 0;
-  currentResult = 0;
-  operandStack = [];
-  operand1 = null;
-  operand2 = null;
-  operation = "";
-}
 
-function clearEntry() {
-  console.log("clearEntry");
-  document.getElementById("result").innerHTML = 0;
-}
