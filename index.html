@@ -16,6 +16,9 @@
       <div class="col-md-6 col-12 offset-md-3">
         <div class="tCalc">
           <div class="tCalcResult">
+              <p id="operationResult"></p>
+              <p id="operation"></p>
+              <p id="operand2"></p>
               <p id="result" contenteditable="true">0</p>
           </div>
           <div class="tCalcOperators">
@@ -28,32 +31,32 @@
               </div>
             </div>
             <div class="tCalcRow">
-              <div class="tCalcCell tCalcOperator" id="reminder" onclick="findReminder()">%</div>
+              <div class="tCalcCell tCalcOperator" id="reminder" onclick="updateOperation('%')">%</div>
               <div class="tCalcCell tCalcOperator" onclick="clearEntry()">CE</div>
               <div class="tCalcCell tCalcOperator" onclick="clearResult()">C</div>
-              <div class="tCalcCell tCalcOperator" id="divide" onclick="divide()">/</div>
+              <div class="tCalcCell tCalcOperator" id="divide" onclick="updateOperation('/')">/</div>
             </div>
             <div class="tCalcRow">
-              <div class="tCalcCell" onclick="updateOperand(7)">7</div>
-              <div class="tCalcCell" onclick="updateOperand(8)">8</div>
-              <div class="tCalcCell" onclick="updateOperand(9)">9</div>
-              <div class="tCalcCell tCalcOperator" id="multiply" onclick="multiply()">x</div>
+              <div class="tCalcCell" onclick="updateOpe(7)">7</div>
+              <div class="tCalcCell" onclick="updateOpe(8)">8</div>
+              <div class="tCalcCell" onclick="updateOpe(9)">9</div>
+              <div class="tCalcCell tCalcOperator" id="multiply" onclick="updateOperation('x')">x</div>
             </div>
             <div class="tCalcRow">
-              <div class="tCalcCell" onclick="updateOperand(4)">4</div>
-              <div class="tCalcCell" onclick="updateOperand(5)">5</div>
-              <div class="tCalcCell" onclick="updateOperand(6)">6</div>
-              <div class="tCalcCell tCalcOperator" id="subtract" onclick="subtract()">-</div>
+              <div class="tCalcCell" onclick="updateOpe(4)">4</div>
+              <div class="tCalcCell" onclick="updateOpe(5)">5</div>
+              <div class="tCalcCell" onclick="updateOpe(6)">6</div>
+              <div class="tCalcCell tCalcOperator" id="subtract" onclick="updateOperation('-')">-</div>
             </div>
             <div class="tCalcRow">
-              <div class="tCalcCell" onclick="updateOperand(1)">1</div>
-              <div class="tCalcCell" onclick="updateOperand(2)">2</div>
-              <div class="tCalcCell" onclick="updateOperand(3)">3</div>
-              <div class="tCalcCell tCalcOperator" id="add" onclick="add()">+</div>
+              <div class="tCalcCell" onclick="updateOpe(1)">1</div>
+              <div class="tCalcCell" onclick="updateOpe(2)">2</div>
+              <div class="tCalcCell" onclick="updateOpe(3)">3</div>
+              <div class="tCalcCell tCalcOperator" id="add" onclick="updateOperation('+')">+</div>
             </div>
             <div class="tCalcRow">
               <div class="tCalcCell ">+/-</div>
-              <div class="tCalcCell " onclick="updateOperand(0)">0</div>
+              <div class="tCalcCell " onclick="updateOpe(0)">0</div>
               <div class="tCalcCell ">.</div>
               <div class="tCalcCell tCalcOperator" onclick="showResult()">=</div>
             </div>
