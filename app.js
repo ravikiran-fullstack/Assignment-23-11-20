@@ -1,6 +1,8 @@
 
 const operationResult = document.createElement('p');
 operationResult.setAttribute('id', 'operationResult');
+const operationResultText = document.createTextNode('0');
+operationResult.append(operationResultText);
 const resultText = document.createTextNode('0');
 const result = document.createElement('p');
 result.setAttribute('id', 'result');
@@ -35,7 +37,7 @@ mMinus.append(mMinusText);
 
 const backSlash = document.createElement('div');
 backSlash.setAttribute('class', 'tCalcCell tCalcOperator');
-backSlash.setAttribute('onclick', 'clearEntry()');
+//backSlash.setAttribute('onclick', '');
 backSlash.setAttribute('id', 'backSlash');
 const backSlashText = document.createTextNode('<-');
 backSlash.append(backSlashText);
@@ -50,7 +52,7 @@ tCalcRow1.append(mc, mPlus, mMinus, backSlash);
 
 const percentage = document.createElement('div');
 percentage.setAttribute('class', 'tCalcCell tCalcOperator');
-percentage.setAttribute('onclick', "updateOperation('%')")
+percentage.setAttribute('onclick', "")
 percentage.setAttribute('id', '%');
 const percentageText = document.createTextNode('%');
 percentage.append(percentageText);
@@ -183,7 +185,7 @@ tCalcRow5.append(num1, num2, num3, add);
 
 const opp = document.createElement('div');
 opp.setAttribute('class', 'tCalcCell');
-opp.setAttribute('onclick', "updateOperation('+/-')")
+opp.setAttribute('onclick', "")
 opp.setAttribute('id', '+/-');
 const oppText = document.createTextNode('+/-');
 opp.append(oppText);
