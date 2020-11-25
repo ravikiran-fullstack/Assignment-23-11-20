@@ -5,19 +5,34 @@ let operandStack = [];
 let operationSelected = "";
 let operationStarted = false;
 let previousKeyPress = '';
+let previousKey = '';
+
+function pressKey(value){
+  document.getElementById(value).classList.add('hold-mouse');
+  if(previousKey !== ''){
+    document.getElementById(previousKey).classList.remove('hold-mouse');
+  }
+  previousKey = value;
+}
 
 function updateOpe(value) {
   previousKeyPress = 'num';
+  pressKey(value);
+  
+  // document.getElementById(value).classList.remove('jiggle');
+  // document.getElementById(value).classList.add('shrink');
+  
     if(!operationStarted){
       currentResult = 0;
       document.getElementById("operationResult").innerHTML = '';
     }
     operand1 = operand1 + value;
     document.getElementById("result").innerHTML = operand1;
+   
 }
 
 function updateOperation(operation) {
-  
+  pressKey(operation);
   if(!operationStarted && (operation === '+' || operation === '-' )){
     currentResult = 0;
   } else if(!operationStarted){
@@ -64,7 +79,7 @@ function showCalculatorOutput() {
 }
 // Called on press of '='
 function showResult() {
-  
+  pressKey('=');
   if(previousKeyPress === 'operator'){
     operandStack.pop();
     operandStack.push(operand1);  
@@ -82,6 +97,7 @@ function showResult() {
 }
 
 function clearResult() {
+  pressKey('clear');
   document.getElementById("result").innerHTML = 0;
   document.getElementById("operationResult").innerHTML = 0;
   currentResult = 0;
@@ -97,6 +113,7 @@ function clearOps(){
 
 
 function clearEntry() {
+  pressKey('ce');
   console.log("clearEntry");
   document.getElementById("result").innerHTML = 0;
   operand1 = ''

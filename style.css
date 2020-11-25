@@ -36,3 +36,9 @@
   border: 1px solid #dddddd;
   
 }
+
+.hold-mouse {
+  /* box-shadow: 1px 1px 10px #80905A; */
+  background-color: #9a8989;
+}
+
