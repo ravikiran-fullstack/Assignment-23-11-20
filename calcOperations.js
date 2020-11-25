@@ -4,8 +4,10 @@ let operand1 = '';
 let operandStack = [];
 let operationSelected = "";
 let operationStarted = false;
+let previousKeyPress = '';
 
 function updateOpe(value) {
+  previousKeyPress = 'num';
     if(!operationStarted){
       currentResult = 0;
       document.getElementById("operationResult").innerHTML = '';
@@ -15,7 +17,8 @@ function updateOpe(value) {
 }
 
 function updateOperation(operation) {
-  if(!operationStarted && (operation === '+' || operation === '-' || operation === '/' )){
+  
+  if(!operationStarted && (operation === '+' || operation === '-' )){
     currentResult = 0;
   } else if(!operationStarted){
     currentResult = 1;
@@ -25,15 +28,34 @@ function updateOperation(operation) {
     operand1 = 0;
   }
 
-  operandStack.push(operand1);
-  operationStarted = true;
-  operationSelected = operation;
-  operandStack.push(operation);
+  if(operand1 !== ''){
+    operandStack.push(operand1);
+  }
 
-  currentResult = calculate(+operand1, currentResult, operationSelected);
+  if(previousKeyPress === 'operator'){
+    operandStack.pop();
+    operandStack.push(operation);
+    temp = currentResult;
+    currentResult = +operand1;
+    operand1 = temp;
+  } else{
+    operandStack.push(operation);
+  }
+
+  operationSelected = operation;
+  
+
+  if(previousKeyPress === 'num' && operationStarted && operation === '-'){
+    currentResult = calculate(currentResult, +operand1, operationSelected);
+  } else {
+    currentResult = calculate(+operand1, currentResult, operationSelected);
+  }
+
+  operationStarted = true;
   document.getElementById("result").innerHTML = currentResult;
   operand1 = '';
   showCalculatorOutput();
+  previousKeyPress = 'operator';
 }
 
 function showCalculatorOutput() {
@@ -42,9 +64,18 @@ function showCalculatorOutput() {
 }
 // Called on press of '='
 function showResult() {
-  operandStack.push(operand1);  
-  operandStack.push('=');
+  
+  if(previousKeyPress === 'operator'){
+    operandStack.pop();
+    operandStack.push(operand1);  
+    operandStack.push('=');
+  } else{
+    operandStack.push(operand1);  
+    operandStack.push('=');
+  }
+  
   showCalculatorOutput();
+  previousKeyPress = 'calculate';
   currentResult = calculate(currentResult, +operand1, operationSelected);
   document.getElementById("result").innerHTML = currentResult;
   clearOps();

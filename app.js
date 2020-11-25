@@ -4,6 +4,7 @@ operationResult.setAttribute('id', 'operationResult');
 const resultText = document.createTextNode('0');
 const result = document.createElement('p');
 result.setAttribute('id', 'result');
+result.setAttribute('contenteditable', 'true');
 result.append(resultText);
 
 const tCalcResult = document.createElement('div');
@@ -31,6 +32,7 @@ mMinus.append(mMinusText);
 
 const backSlash = document.createElement('div');
 backSlash.setAttribute('class', 'tCalcCell tCalcOperator');
+backSlash.setAttribute('onclick', 'clearEntry()');
 const backSlashText = document.createTextNode('<-');
 backSlash.append(backSlashText);
 
@@ -162,7 +164,7 @@ tCalcRow5.append(num1, num2, num3, add);
 const opp = document.createElement('div');
 opp.setAttribute('class', 'tCalcCell');
 opp.setAttribute('onclick', "updateOperation('+/-')")
-const oppText = document.createTextNode('1');
+const oppText = document.createTextNode('+/-');
 opp.append(oppText);
 
 const num0 = document.createElement('div');
